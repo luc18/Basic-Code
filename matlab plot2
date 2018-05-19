@@ -1,0 +1,34 @@
+subplot(snn,1,3)
+%     indexr = (raind==0);
+%     TStr = TSt(~indexr);
+%     raindr = raind(~indexr);
+%     hold on
+%     h4=bar(TStr,raindr);
+%     set(h4,'FaceColor',[0 0.8 0.4],'EdgeColor',[1,1,1]*0.3,'linewidth',2,'BarWidth',1,'BarLayout','stacked')%
+%     set(gca,'Ycolor',[0 0.8 0.4],'ylim',[max(0,floor(min(raind))),ceil(max(raind)*12)./10],'YAxisLocation','right')
+%     set(get(gca,'Ylabel'),'color',[0 0.8 0.4],'string',{'降雨量' ; 'mm/h'},'FontSize',psize,'FontName','Times New Roman');
+%     set(gca,'xlim',[TSt(1),TSt(end)],'xtick',TStt,'xticklabel',[])
+%     box off
+%     h3=plot(TSt,Tempe);
+%     set(h3,'color','r','linewidth',2)%
+%     set(gca,'Ycolor','r','ylim',[max(0,floor(min(Tempe))),ceil(max(Tempe)*10.2)./10],'YAxisLocation','left')
+%     set(get(gca,'Ylabel'),'color','R','string',{'气温' ; '℃'},'FontSize',psize,'FontName','Times New Roman');  
+%     box off 
+    indexr = (raind==0);
+    TStr = TSt(~indexr);
+    raindr = raind(~indexr);
+    [AX2,H3,H4] = plotyy(TSt,Tempe,0,128,'plot','bar');%'b'
+    set(H3,'color','r','linewidth',2)
+%     set(H4,'FaceColor',[0 0.8 0.4],'EdgeColor',[1,1,1]*0.3,'linewidth',2,'BarWidth',1)%'BarLayout','stacked'
+%     set(H4,'color',[0 0.8 0.4],'linewidth',2,'Marker','o','MarkerSize',5,'MarkerEdgeColor',[0 0 0],'MarkerFaceColor',[0 0.8 0.4])%'c'
+    set(AX2(1),'ylim',[max(0,floor(min(Tempe))),ceil(max(Tempe)*10.2)./10],'tickdir','out')
+    set(AX2(2),'ylim',[max(0,floor(min(raind))),ceil(max(raind)*12)./10],'tickdir','out')
+    set(AX2,'xlim',[TSt(1),TSt(end)],'xtick',TStt,'xticklabel',[])
+    set(get(AX2(1),'Ylabel'),'color','R','string',{'气温' ; '℃'},'FontSize',psize,'FontName','Times New Roman');  
+    set(get(AX2(2),'Ylabel'),'color',[0 0.8 0.4],'string',{'降雨量' ; 'mm/h'},'FontSize',psize,'FontName','Times New Roman');
+    set(AX2(1),'Ycolor','r') 
+    set(AX2(2),'Ycolor',[0 0.8 0.4]) 
+    box off 
+    hold(AX2(2),'on');
+    h5=bar(AX2(2),TStr,raindr);
+    set(h5,'FaceColor',[0 0.8 0.4],'EdgeColor',[1,1,1]*0.3,'linewidth',2,'BarWidth',1,'BarLayout','stacked')%
