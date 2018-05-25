@@ -1,0 +1,38 @@
+subplot(snn,1,1)
+    [AX2,H3,H4] = plotyy(TSt,Patm,0,1,'plot','bar');%'b'
+    set(H3,'color','k','linewidth',2)
+    set(AX2(1),'ylim',[max(0,floor(min(Patm))),ceil(max(Patm)*12)./10],'tickdir','out')
+    set(AX2(2),'tickdir','out')
+    set(AX2,'xlim',[TSt(1),TSt(end)],'xtick',TStt,'xticklabel',[])
+    set(AX2(2),'yticklabel',[])
+    set(get(AX2(1),'Ylabel'),'color',[0 0.8 0.4],'string',{'Prec(mm/h)'},'FontSize',psize,'FontName','Times New Roman');
+    set(AX2(1),'Ycolor',[0 0.8 0.4]) %precipitation
+    set(AX2(2),'Ycolor','k') 
+    box off 
+    hold(AX2(2),'on');
+    h5=bar(AX2(2),TStr,raindr);
+    set(h5,'FaceColor',[0 0.8 0.4],'EdgeColor',[1,1,1]*0.3,'linewidth',2,'BarWidth',1,'BarLayout','stacked')%
+subplot(snn,1,2)
+    [AX3,H6,H7] = plotyy(TSt,Lid,0,128);%'b'
+    set(H6,'color',[1 0 1],'linewidth',2)
+    set(AX3(1),'ylim',[max(0,floor(min(Lid))),ceil(max(Lid)*10)./10],'tickdir','out')
+    set(AX3(2),'tickdir','out')
+    set(AX3,'xlim',[TSt(1),TSt(end)],'xtick',TStt,'xticklabel',[])
+    set(AX3(2),'yticklabel',[])
+    set(get(AX3(1),'Ylabel'),'color',[1 0 1],'string',{'PAR(MJ/m^2)'},'FontSize',psize,'FontName','Times New Roman');  
+    set(AX3(1),'Ycolor',[1 0 1]) 
+    set(AX3(2),'Ycolor','k')
+    box off
+subplot(snn,1,3)
+%     set(gca,'Position',[0.13 0.84 0.775 0.08])
+    [AX1,H1,H2] = plotyy(TSt,Tempe,0,128);%'b'
+    set(H1,'color','r','linewidth',2)%'k'
+    set(H2,'color',[0.2 0.4 1],'linewidth',2)%'b'
+    set(AX1(1),'ylim',[max(0,floor(min(Tempe))),ceil(max(Tempe)*10.2)./10],'tickdir','out')
+    set(AX1(2),'tickdir','out')
+    set(AX1,'xlim',[TSt(1),TSt(end)],'xtick',TStt,'xticklabel',[])
+    set(AX1(2),'yticklabel',[])
+    set(get(AX1(1),'Ylabel'),'string',{'Tempe(℃)'},'FontSize',psize,'FontName','Times New Roman');%y轴标题字号
+    set(AX1(1),'Ycolor','r') 
+    set(AX1(2),'Ycolor','k') 
+    box off     
