@@ -1,0 +1,115 @@
+clear
+% txt='lowerbound';
+txt='normal';
+for nfile=1
+for index=28%[8,17,18,28]%[6,8,17,18,28]
+    index
+    %%
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\' num2str(index) '_time_seri.mat' ] );    %时间序列
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\' num2str(index) '_time_seri_obs.mat' ] );%观测时间序列
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\' num2str(index) '_DO_N_obs.mat' ] );     %观测DO\N值
+    %总共12种：总边界，95%，99%。3*2*2
+    %all
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\' num2str(index) 'max_DO_pre_all.mat' ]);     %,'MAX_DO' 
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\' num2str(index) 'min_DO_pre_all.mat' ]);     %,'MIN_DO' 
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\' num2str(index) 'max_N_pre_all.mat' ]);      %,'MAX_N' 
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\' num2str(index) 'min_N_pre_all.mat' ] );     %,'MIN_N'
+    %95%
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\' num2str(index) 'max_DO_pre_95.mat' ]);     %,'MAX_DO' 
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\' num2str(index) 'min_DO_pre_95.mat' ]);     %,'MIN_DO' 
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\' num2str(index) 'max_N_pre_95.mat' ]);      %,'MAX_N' 
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\' num2str(index) 'min_N_pre_95.mat' ] );     %,'MIN_N'
+    %99%
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\' num2str(index) 'max_DO_pre_99.mat' ]);     %,'MAX_DO' 
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\' num2str(index) 'min_DO_pre_99.mat' ]);     %,'MIN_DO' 
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\' num2str(index) 'max_N_pre_99.mat' ]);      %,'MAX_N' 
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\' num2str(index) 'min_N_pre_99.mat' ] );     %,'MIN_N
+    %%
+    load ([ pwd '\data' num2str(nfile+1) '_' txt  '\'  num2str(index) '_DO_pre.mat' ] )
+    load ([ pwd '\data' num2str(nfile+1) '_' txt  '\'  num2str(index) '_N_pre.mat' ] )
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\'  num2str(index) 'mean_DO_pre.mat' ] )
+    load ([ pwd '\data' num2str(nfile) '_' txt  '\'  num2str(index) 'mean_N_pre.mat' ] )
+    %%
+subplot1 = subplot(2,1,1);
+H1 = fill([t_ser,fliplr(t_ser)],[MAX_DO_99,fliplr(MIN_DO_99)],[1,1,1].*0.85);
+hold on
+H12 = plot(t_ser,MAX_DO_all,'k--','linewidth',0.8);                             %:最大值-.
+H13 = plot(t_ser,MIN_DO_all,'k--','linewidth',0.8);                             %:最小值
+MIN_DO_all(MIN_DO_all<0)=0;
+H14 = plot(t_ser_obs,Dnt_obs(1,:),'bo','MarkerSize',5,'MarkerFaceColor','b');   %观测值
+H15 = plot(t_ser,DO_mean,'b-','linewidth',1);%Dall_DO                           %均值\最佳估测值
+set(H1,{'LineStyle'},{'none'}) %设置颜色
+% set(gca,'XTick',[])
+set(subplot1,'xtick',[])
+set(gca,'tickdir','out')
+sa1=get(subplot1,'position');
+set(subplot1,'position',[sa1(1),sa1(2)-0.03,sa1(3),sa1(4)+0.02])
+xlim(subplot1,[0 max(t_ser_obs)]);
+ylim(subplot1,[floor(min(MIN_DO_all)*10)./10 ceil(max(MAX_DO_all)*10)./10]);%min(0,floor(min(MIN_DO_all)*10)./10)
+ylabel('Dissolved oxygen(mg/l)','fontsize',10);%dissolved oxygen%溶解氧浓度（mg/l）
+HL1 = legend([H1,H15,H14,H12],'95% Interval','Mean Forecast','Observed DO Series','Simulated Minimum/Maximum Value');%,'Location','NorthEastOutside','FontSize',5
+set(HL1,'Location','SouthWest','FontSize',5.5);%'NorthEastOutside'
+sub_po1=get(subplot1,'Position');
+sub_HL1_po1=get(HL1,'Position');
+set(HL1,'Position',[sub_HL1_po1(1)-0.02,sub_HL1_po1(2)-0.01,sub_HL1_po1(3),sub_HL1_po1(4)]);%'0.257142857142857,0.126190476190476
+legend boxoff
+box off
+ax1 = axes('Position',get(gca,'Position'),...
+           'XAxisLocation','top',...
+           'YAxisLocation','right',...
+           'Color','none',...
+           'XColor','k','YColor','k');
+set(ax1,'YTick', []);
+set(ax1,'XTick', []);
+
+%%
+subplot2 = subplot(2,1,2);
+H2 = fill([t_ser,fliplr(t_ser)],[MAX_N_99,fliplr(MIN_N_99)],[1,1,1].*0.85);
+hold on
+H22 = plot(t_ser,MAX_N_all,'k--','linewidth',0.8);                              %:最大值
+H23 = plot(t_ser,MIN_N_all,'k--','linewidth',0.8);                              %:最小值
+H24 = plot(t_ser_obs,Dnt_obs(2,:),'bo','MarkerSize',5,'MarkerFaceColor','b');   %b\k%观测值
+H25 = plot(t_ser,N_mean,'b-','linewidth',1);%Dall_N%均值\最佳估测值
+set(H2,{'LineStyle'},{'none'}) %设置颜色
+set(gca,'tickdir','out')
+sa2=get(subplot2,'position');
+set(subplot2,'position',[sa2(1),sa2(2)     ,sa2(3),sa2(4)+0.02])
+xlim(subplot2,[0 max(t_ser_obs)]);
+ylim(subplot2,[min(-1,floor(min(MIN_N_all)*10)./10) ceil(max(MAX_N_all)*10)./10+0.1]);
+xlabel('Time(h)','fontsize',10);%Time时间（h）
+ylabel('Number of Survival Fish','fontsize',10);%Number of survival fish%尾数（个）
+HL2 = legend([H2,H25,H24,H22],'95% Interval','Mean Forecast','Observed Number Series','Simulated Minimum/Maximum Value');%,'Location','NorthEastOutside','FontSize',5
+set(HL2,'Location','SouthWest','FontSize',5.5);%'NorthEastOutside'
+sub_po2=get(subplot2,'Position');
+sub_HL2_po2=get(HL2,'Position');
+set(HL2,'Position',[sub_HL2_po2(1)-0.02,sub_HL2_po2(2)-0.01,sub_HL2_po2(3),sub_HL2_po2(4)]);%'0.257142857142857   0.126190476190476
+legend boxoff
+box off
+ax2 = axes('Position',get(gca,'Position'),...
+           'XAxisLocation','top',...
+           'YAxisLocation','right',...
+           'Color','none',...
+           'XColor','k','YColor','k');
+set(ax2,'YTick', []);
+set(ax2,'XTick', []);
+pause(3)
+% sa1=get(subplot1,'position');
+% sa2=get(subplot2,'position');
+% set(subplot1,'position',[sa1(1),sa1(2)-0.03,sa1(3),sa1(4)+0.03])
+% set(subplot2,'position',[sa2(1),sa2(2)     ,sa2(3),sa2(4)+0.03])
+clf
+end
+end
+
+%% 取消注释以下行以保留轴的 X 极限
+% xlim(subplot1,[-1 10]);
+%% 取消注释以下行以保留轴的 Y 极限
+% ylim(subplot1,[0.5 2.6]);
+% box(subplot1,'on');
+% MY1 = ceil(max(MAX_DO))+1;
+% MY2 = ceil(max(MAX_N(:)))+1;
+% plotyy_fluc(t_ser,MAX_DO ,MAX_N,t_ser_obs,Dnt_obs(1,:),Dnt_obs(2,:),MY1,MY2);
+% hold on 
+% plotyy_fluc(t_ser,MIN_DO ,MIN_N,t_ser_obs,Dnt_obs(1,:),Dnt_obs(2,:),MY1,MY2);
+% hold on 
+% plotyy_fluc(t_ser,Dall_DO,Dall_N,t_ser_obs,Dnt_obs(1,:),Dnt_obs(2,:),MY1,MY2);
