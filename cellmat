@@ -1,0 +1,5 @@
+1、cell2mat：将cell转换为mat的char型 
+2、str2num：将mat从char转换为double型 
+3、cellstr：将char转cell 
+4、num2str：将double转char 
+5、num2cell：将double直接转cell
