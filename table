@@ -1,0 +1,29 @@
+categorical
+regexprep %代替
+%%
+%s
+% 读取文件内容
+filename='mydoc.txt';      %文件名
+fstr=fileread(filename);    %读取文件内容
+  %fstr(isspace(fstr)) = [] ;%去除所有空格
+fstr=regexprep(fstr,'\W','');%去除所有标点符号
+fstrLength=length(fstr);     %统计文件字数
+%
+fstrcell=cell(length(fstr),1); %生成元胞数组
+for n = 1:length(fstr)
+          fstrcell{n,1}= fstr(n);
+end
+WordCat = categorical(fstrcell); %建立分类统计变量
+summary(WordCat);
+ustr = unique(fstrcell);%获取分类因子的列表
+cstr=countcats(WordCat);%计算各个分类因子的数目
+[cstrsort,SortIndex] =sort(cstr);%从小到大排序
+displaynum=10;%只显示最长出现的10个分类因子
+for m =1:(length(cstr)-displaynum)
+    %删去出现频次较低的因子
+    WordCat = removecats(WordCat,ustr{SortIndex(m)});
+end
+% 绘制图形
+figure(1)
+hist(WordCat);
+ylabel('出现次数')
