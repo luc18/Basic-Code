@@ -1,0 +1,32 @@
+close all
+%数据设置
+X = [1, 2, 3, 4, 5];
+OA = [99.03, 99.13, 99.22, 99.17, 98.98]
+AA = [99.02, 99.06, 99.27, 99.23, 99.12];
+KAPPA = [0.9852, 0.9868, 0.9882, 0.9875, 0.9844];
+%打开图，设置左右y轴属性
+fig = figure;
+left_color = [0 0 0];
+right_color = [0 0 0];
+set(fig,'defaultAxesColorOrder',[left_color; right_color]);
+%激活左侧
+yyaxis left
+plot(X, OA,'b--o', 'LineWidth',2, 'MarkerSize',6, 'MarkerEdgeColor', 'k', 'MarkerFaceColor','b');   
+hold on
+plot(X, AA,'r--s', 'LineWidth',2, 'MarkerSize',6, 'MarkerEdgeColor', 'k', 'MarkerFaceColor','r');
+ylabel('Accuracy(%)')
+%设置刻度
+axis([1 5 98.8 99.4]);
+set(gca,'YTick',[98.8 99 99.2 99.4]);
+%激活右侧
+yyaxis right
+plot(X, KAPPA,'m--^', 'LineWidth',2, 'MarkerSize',6, 'MarkerEdgeColor', 'k', 'MarkerFaceColor','r');
+ylabel('KC')
+xlabel('X')
+title('San Franciso Bay')
+legend('OA', 'AA', 'KC');
+%设置刻度
+axis([1 5 0.984 0.99]);
+set(gca,'YTick',[0.984 0.986 0.988 0.99]);
+%画网格
+grid on
