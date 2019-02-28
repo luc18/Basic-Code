@@ -1,0 +1,12 @@
+d=dir('*合并*.*');
+N = size(d,1);
+data = nan(N,10);
+data(:,1) = 1:N;
+for index = 1:N
+    dirs = [ pwd , '\' , d(index).name '\fitting-curve-all-236\' ];
+    if isdir(dirs)
+        ad = dir( [ dirs ]);
+        ax = struct2cell(ad);
+        data(index,2) = sum(cell2mat(ax(5,:)))-2;
+    end
+end
