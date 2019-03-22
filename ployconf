@@ -23,3 +23,7 @@ plotfit
 regstats
 
 https://blog.csdn.net/ytffhew/article/details/83536706
+
+
+vard = tinv(1-(1-pv)/2,df)*sqrt(sum(deltaf.^2)./df);
+sp = mvnrnd(Bra,lr.covb,100);
