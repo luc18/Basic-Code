@@ -8,3 +8,18 @@ line(x,yfit-dy,'color','r','linestyle',':')
 line(x,yfit+dy,'color','r','linestyle',':')
 
 plotfit
+
+
+
+ [beta,r,j] = nlinfit(x，y，'model’，beta0)
+
+  [y,delta] = nlpredci(’model’，x，beta,r,j)
+--------------------- 
+作者：Halosec_Wei 
+来源：CSDN 
+原文：https://blog.csdn.net/qq_41686130/article/details/81385968 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
+regstats
+
+https://blog.csdn.net/ytffhew/article/details/83536706
