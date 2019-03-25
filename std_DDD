@@ -1,0 +1,8 @@
+    [lr]=regstats(dsw,dp,'linear');
+    std3 = lr.tstat.se;
+
+%     stds = diag(lr.covb).^0.5;
+%     %正太分布：此处不适用
+%     DDD = [lr.beta,lr.beta-stds*norminv(0.995),lr.beta+stds*norminv(0.995)]; %参数的置信区间
+%     %t 分布区间求解
+%     DDD = [lr.beta,lr.beta+stds*tinv(0.005,192),lr.beta+stds*tinv(0.995,192)]; %参数的置信区间
