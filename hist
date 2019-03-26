@@ -22,3 +22,21 @@ y2 = hist(data2, bins);
 
 % stacked histograms
 bar([y1.' y2.'],'stacked')
+xd = findobj('-property','XData');
+
+for i=1:2
+    dat = get(xd(i),'XData');
+    dat = 2*dat/nbins - bound;
+    set(xd(i),'XData',dat);
+end
+
+%%
+Y = randn(3,5);
+h = bar(Y);
+set(get(h(1),'BaseLine'),'LineWidth',2,'LineStyle',':')
+colormap summer % Change the color scheme
+
+h=bar(rand(3,3),'stacked')
+set(hb(1),'facecolor','r')
+set(hb(2),'facecolor','g')
+set(hb(3),'facecolor','b')
