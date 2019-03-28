@@ -1,0 +1,1 @@
+figure();plot([1,2,3],[10,23,45]);set(gcf, 'Color', 'w'); print(gcf,'foo.png','-dpng','-r1000');
