@@ -1,3 +1,6 @@
+legend({'SMR','RMR','AMR'},'Color',[1 1 1].*0.9,'EdgeColor','none','FontSize',7);
+
+
 clear
 % txt='lowerbound';
 txt='normal';
