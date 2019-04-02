@@ -6,3 +6,14 @@
 %     DDD = [lr.beta,lr.beta-stds*norminv(0.995),lr.beta+stds*norminv(0.995)]; %参数的置信区间
 %     %t 分布区间求解
 %     DDD = [lr.beta,lr.beta+stds*tinv(0.005,192),lr.beta+stds*tinv(0.995,192)]; %参数的置信区间
+
+%%
+    alpha = 0.05;
+    SSE = sum((Y-f).^2);
+    sigma = sqrt(SSE./(n-m-1));
+    td = tinv(1-alpha/2,numel(X1)-m-1);
+    fval=B(1)+B(2).*xm1+B(3).*xm3;                      %各个点上的最优估计值
+    [ css1 ] = CL( XC,2,[reshape(xm1,[],1),reshape(xm3,[],1)] );
+    css = reshape(css1,size(xm1,1),size(xm1,2));
+    upper=fval+sigma.*td.*css;                         %计算预测值的上限
+    lower=fval-sigma.*td.*css;                         %计算预测值的下限
