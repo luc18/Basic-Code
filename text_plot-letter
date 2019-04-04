@@ -1,0 +1,62 @@
+t=['y1(\alpha)=sin(\alpha)',' y2(\theta)=\int_0^{2\pi} sin(\beta)']
+gtext(t);
+
+关于matlab中特殊字符, 上标和下标
+'T=25\circC'，(摄氏度)
+下标用 _(下划线)
+上标用^ （尖号）
+希腊字母等特殊字符用
+α \alpha
+β \beta
+γ \gamma
+θ \theta
+Θ \Theta
+Г \Gamma
+δ \delta
+Δ \Delta
+ξ \xi
+Ξ \Xi
+η \elta
+ε \epsilon
+ζ \zeta
+μ \miu
+υ \nu
+τ \tau
+λ \lamda
+Λ \Lamda
+π \pi
+Π \Pi
+σ \sigma
+Σ \Sigma
+φ \phi
+Φ \Phi
+ψ \psi
+Ψ \Psi
+χ \chi
+ω \ommiga
+Ω \Ommiga
+< \leq
+> \geq
+不等于 \neq
+<< \ll
+>> \gg
+正负 \pm
+左箭头 \leftarrow
+右箭头 \rightarrow
+上箭头 \uparrow
+上圆圈（度数） \circ
+例 text(2,3,'\alpha_2^\beta')
+注： 可用{}把须放在一起的括起来
+^{supeerstring}——进行上标文本的注释
+_{substring}——进行下标文本的注释
+\bf：加粗字体
+\it：斜字体
+\sl：斜字体
+\rm：正常字体
+\fontname{fontname}：定义使用特殊的字体名称
+\fontsize{fontsize}：定义使用特殊的字体大小
+--------------------- 
+作者：请叫我木丁西 
+来源：CSDN 
+原文：https://blog.csdn.net/qq1012421396/article/details/72654727 
+版权声明：本文为博主原创文章，转载请附上博文链接！
