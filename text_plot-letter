@@ -22,8 +22,8 @@ gtext(t);
 μ \miu
 υ \nu
 τ \tau
-λ \lamda
-Λ \Lamda
+λ \lamdba
+Λ \Lamdba
 π \pi
 Π \Pi
 σ \sigma
@@ -63,3 +63,8 @@ _{substring}——进行下标文本的注释
 
 
 text(1,0.5,'$$y=\frac{a}{b}$$','interpreter','latex','fontsize',16)
+
+%     annotation('textbox',[p1      0.96  0.4 0.015],'String','$$e^{\lambda\frac{{V_s}}{{V_s}+{k_v}}}$$','Interpreter','latex','FitBoxToText','off','EdgeColor','none');
+%     annotation('textbox',[p1+0.42 0.96  0.4 0.015],'String','$$e^{\lambda\frac{{V_s}}{{V_s}+{k_v}}}$$','Interpreter','latex','FitBoxToText','off','EdgeColor','none');
+%     annotation('textbox',[p1      0.50  0.4 0.015],'String','$$e^{\lambda\frac{{V_s}}{{V_s}+{k_v}}}$$','Interpreter','latex','FitBoxToText','off','EdgeColor','none');
+%     annotation('textbox',[p1+0.42 0.50  0.4 0.015],'String','$$e^{\lambda\frac{{V_s}}{{V_s}+{k_v}}}$$','Interpreter','latex','FitBoxToText','off','EdgeColor','none');
