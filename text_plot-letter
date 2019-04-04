@@ -60,3 +60,6 @@ _{substring}——进行下标文本的注释
 来源：CSDN 
 原文：https://blog.csdn.net/qq1012421396/article/details/72654727 
 版权声明：本文为博主原创文章，转载请附上博文链接！
+
+
+text(1,0.5,'$$y=\frac{a}{b}$$','interpreter','latex','fontsize',16)
