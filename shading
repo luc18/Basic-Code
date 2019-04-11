@@ -1,0 +1,4 @@
+shading flat 
+shading faceted 
+shading interp 
+shading(axes_handle,...) 
