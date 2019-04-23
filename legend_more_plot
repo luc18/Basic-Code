@@ -1,3 +1,9 @@
+hs1.TickLabelInterpreter='LATEX';
+hs2.TickLabelInterpreter='LATEX';
+hs1.XTickLabel = {'$$t_{m-1}^0$$','$$t_{m-n}^0$$','$$t_{m}^0$$','$$t_{m-n}^0$$'};
+hs2.XTickLabel = {'$$t_{m-1}^0$$','$$t_{m-n}^0$$','$$t_{m}^0$$','$$t_{m-n}^0$$'};
+
+
 legend({'SMR','RMR','AMR'},'Color',[1 1 1].*0.9,'EdgeColor','none','FontSize',7);
 
 
